@@ -3,9 +3,9 @@
 | | |
 | --- | --- |
 | **Plan** | Add a `defect` level label + issue template to the gh-issue-tracking-init skill |
-| **Target repo** | `intel-agency/agent-context` |
+| **Target repo** | `intel-agency/gap-miner-v2-kilo38` |
 | **Status** | Deferred |
-| **Extracted from** | [`../.completed/agent-context-fix-plan.md`](../.completed/agent-context-fix-plan.md) (was work item W3) |
+| **Extracted from** | [`../.completed/gap-miner-v2-kilo38-fix-plan.md`](../.completed/gap-miner-v2-kilo38-fix-plan.md) (was work item W3) |
 | **Date extracted** | 2026-07-18 |
 | **Reference** | Forensic finding F7 |
 

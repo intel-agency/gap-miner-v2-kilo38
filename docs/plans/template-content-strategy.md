@@ -3,7 +3,7 @@
 | | |
 | --- | --- |
 | **Plan** | Define how content in this template repo behaves when cloned into downstream app instances, and where the transfer/cleanup logic belongs |
-| **Target repo** | `intel-agency/agent-context` (a GitHub **template** repo) |
+| **Target repo** | `intel-agency/gap-miner-v2-kilo38` (a GitHub **template** repo) |
 | **Status** | Active |
 | **Date** | 2026-07-18 |
 | **Related** | [`gh-issue-tracking-init`](../../.agents/skills/gh-issue-tracking-init/SKILL.md) skill (no-arg defaults); `orchestrate-new-project` / `orchestrate-project-setup` skills (seeding flow) |
@@ -12,7 +12,7 @@
 
 ## Context
 
-`agent-context` is a **generic GitHub template repo**. It is not an application —
+`gap-miner-v2-kilo38` is a **generic GitHub template repo**. It is not an application —
 it is the substrate. The intended lifecycle of an instance is:
 
 1. **Clone** the template into a new repo (GitHub "Use this template" copies all
@@ -65,9 +65,9 @@ Inherently project-specific. Must **not** be ported down, and must be **reset** 
 clone.
 
 - `.agents/memory.md` — Current Activity / Completed Work / Decisions describe
-  *agent-context's own* development, not the clone's app.
+  *gap-miner-v2-kilo38's own* development, not the clone's app.
 - This repo's own `docs/plans/.completed/*` — e.g.
-  `agent-context-fix-plan.md`, `app-stacks-rules-plan.md`,
+  `gap-miner-v2-kilo38-fix-plan.md`, `app-stacks-rules-plan.md`,
   `rules-scripts-and-legacy-migration.md` (plans about improving the template).
 - This repo's own `docs/plans/.deferred/*` — e.g. `defect-level-plan.md`.
 - **Foreign/contaminating artifacts** — downstream run reports that leaked up into

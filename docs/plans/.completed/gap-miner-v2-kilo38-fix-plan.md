@@ -1,11 +1,11 @@
-# Plan — Upstream fixes in `intel-agency/agent-context`
+# Plan — Upstream fixes in `intel-agency/gap-miner-v2-kilo38`
 
-> Handoff document for an implementing agent. Source: the forensic analysis `gap-miner-v2-sierra46-forensic-analysis.md` (§9, §10) in the [`intel-agency/gap-miner-v2-sierra46`](https://github.com/intel-agency/gap-miner-v2-sierra46) repo. Target repo: [`intel-agency/agent-context`](https://github.com/intel-agency/agent-context) (the parent template that owns the `/gh-issue-tracking-init` skill as the canonical source of truth).
+> Handoff document for an implementing agent. Source: the forensic analysis `gap-miner-v2-sierra46-forensic-analysis.md` (§9, §10) in the [`intel-agency/gap-miner-v2-sierra46`](https://github.com/intel-agency/gap-miner-v2-sierra46) repo. Target repo: [`intel-agency/gap-miner-v2-kilo38`](https://github.com/intel-agency/gap-miner-v2-kilo38) (the parent template that owns the `/gh-issue-tracking-init` skill as the canonical source of truth).
 
 | | |
 |---|---|
-| **Plan** | Forensic-fixes upstream in agent-context |
-| **Target repo** | `intel-agency/agent-context` |
+| **Plan** | Forensic-fixes upstream in gap-miner-v2-kilo38 |
+| **Target repo** | `intel-agency/gap-miner-v2-kilo38` |
 | **Date drafted** | 2026-07-17 |
 | **Status** | Implemented (W1, W2, W4); W3 (defect level) **deferred** — extracted to [`../.deferred/defect-level-plan.md`](../.deferred/defect-level-plan.md) |
 | **Skill path in target** | `.agents/skills/gh-issue-tracking-init/` |
@@ -15,17 +15,17 @@
 
 ## TL;DR
 
-A forensic analysis of the skill applied to `intel-agency/gap-miner-v2-sierra46` found one **latent Int32-overflow bug**, two documentation gaps, and one missing level (`defect`). This plan fixes all of it **upstream** in `intel-agency/agent-context` so downstream repos inherit the improvements the next time they vendor the skill. Per-repo manual steps (adding Project views, tweaking Status options, adding plan-issue context) are out of scope.
+A forensic analysis of the skill applied to `intel-agency/gap-miner-v2-sierra46` found one **latent Int32-overflow bug**, two documentation gaps, and one missing level (`defect`). This plan fixes all of it **upstream** in `intel-agency/gap-miner-v2-kilo38` so downstream repos inherit the improvements the next time they vendor the skill. Per-repo manual steps (adding Project views, tweaking Status options, adding plan-issue context) are out of scope.
 
 ---
 
 ## 1. Scope & Inputs
 
-- **Target repo:** `intel-agency/agent-context` (the repo that owns the `/gh-issue-tracking-init` skill as its canonical source of truth)
+- **Target repo:** `intel-agency/gap-miner-v2-kilo38` (the repo that owns the `/gh-issue-tracking-init` skill as its canonical source of truth)
 - **Skill path in target:** `.agents/skills/gh-issue-tracking-init/`
 - **Generic scripts path:** `scripts/` (the repo-root `common-auth.ps1`, `import-labels.ps1`, `create-milestones.ps1`)
 - **Evidence:** the forensic analysis `gap-miner-v2-sierra46-forensic-analysis.md` (`§9`, `§10`) in the [`intel-agency/gap-miner-v2-sierra46`](https://github.com/intel-agency/gap-miner-v2-sierra46) repo
-- **Fixes applied upstream flow forward:** once W1–W4 merge into `agent-context`, any repo cloned from the template afterward inherits them automatically.
+- **Fixes applied upstream flow forward:** once W1–W4 merge into `gap-miner-v2-kilo38`, any repo cloned from the template afterward inherits them automatically.
 
 ### In scope (work items below)
 
@@ -44,7 +44,7 @@ Per-repo UI/curator items (project views, extra `Status` options, plan-issue pro
 
 Before starting:
 
-1. Clone/fetch `intel-agency/agent-context` and `cd` into it.
+1. Clone/fetch `intel-agency/gap-miner-v2-kilo38` and `cd` into it.
 2. Verify the skill lives at `.agents/skills/gh-issue-tracking-init/`; verify its `scripts/` directory matches the file list expected by the skill README.
 3. Confirm prerequisites: `pwsh` 7+, `gh` authenticated with the `project` scope, `Pester` installed (`Install-Module Pester -Force -Scope CurrentUser` or similar).
 4. Run the existing Pester suite to establish a green baseline:
@@ -201,7 +201,7 @@ W2/W3/W4 are independent of each other and may run in parallel.
 
 ## 5. Definition of done
 
-The plan is done when, against `intel-agency/agent-context`:
+The plan is done when, against `intel-agency/gap-miner-v2-kilo38`:
 
 1. [ ] All four work items (W1–W4) pass their individual acceptance criteria.
 2. [ ] The full Pester suite passes:
@@ -209,7 +209,7 @@ The plan is done when, against `intel-agency/agent-context`:
    pwsh -NoProfile -Command "Invoke-Pester -Path .agents/skills/gh-issue-tracking-init/scripts/tests -Output Detailed"
    ```
 3. [ ] The **smoke test** from `scripts/README.md` (run against a dedicated throwaway test repo) builds a tiny `plan → epic → story → task` hierarchy end-to-end without any Int32-overflow or splatting-misbind errors, and all sub-issue links and dependencies are recorded.
-4. [ ] A PR opened against `intel-agency/agent-context`'s default branch:
+4. [ ] A PR opened against `intel-agency/gap-miner-v2-kilo38`'s default branch:
    - uses a Conventional Commit message (`fix(gh-issue-tracking-init): handle Int64 DB ids + defect level + doc updates`);
    - links back to this plan and the forensic analysis in `sierra46`;
    - includes the Pester output and the smoke-test evidence in the PR description.
@@ -241,8 +241,8 @@ The plan is done when, against `intel-agency/agent-context`:
 ## 7. Handoff to the implementing agent
 
 ```text
-You are implementing a fix plan in intel-agency/agent-context. The fix plan is:
-  docs/plans/agent-context-fix-plan.md
+You are implementing a fix plan in intel-agency/gap-miner-v2-kilo38. The fix plan is:
+  docs/plans/gap-miner-v2-kilo38-fix-plan.md
 
 1. Orientation (steps 1–4 of the plan): clone/fetch the repo, locate the skill,
    run the existing Pester suite and confirm it is green at baseline.
@@ -253,7 +253,7 @@ You are implementing a fix plan in intel-agency/agent-context. The fix plan is:
 4. Run the smoke test from scripts/README.md against a dedicated throwaway test
    repo (not a production repo). Record which scripts succeeded, which skipped
    on idempotency, and any new errors.
-5. Open a PR against the default branch of intel-agency/agent-context:
+5. Open a PR against the default branch of intel-agency/gap-miner-v2-kilo38:
      - Conventional Commit: fix(gh-issue-tracking-init): handle Int64 DB ids +
        defect level + doc updates
      - PR body: link to this plan and to the forensic analysis document that
